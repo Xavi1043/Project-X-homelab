@@ -493,10 +493,120 @@ Set up Kali Linux on a virtual machine to serve as an attack platform for conduc
 - **Network Configuration:** Configured and verified network settings to ensure proper communication within the lab environment.
 - **Security Tools Setup:** Installed and configured necessary tools such as Metasploit and Burp Suite for penetration testing and vulnerability assessment.
 - **Security Implications Addressed:** Ensured that the use of Kali Linux is isolated within the lab environment to prevent any unauthorized access and potential misuse.
-
+![image](https://github.com/user-attachments/assets/893876c8-7b31-4789-807a-0488e38f7f99)
+![image](https://github.com/user-attachments/assets/7a8fb12d-5e6c-4fc4-a460-e56fb4886732)
 ![image](https://github.com/user-attachments/assets/384be04e-523c-414c-95be-4537d28ac3fc)
 
 
+
+
+# Phase 10: Initial Access to Breached
+
+![image](https://github.com/user-attachments/assets/83215da2-f38c-4ecd-9c20-8f8f4879440d)
+
+
+## Objective
+Simulate a cyber-attack on ProjectX's business network to capture sensitive files and achieve persistence. This phase aims to emulate real-world tactics, using tools and techniques available to the attacker, to penetrate network defenses and establish control.
+
+![image](https://github.com/user-attachments/assets/bdfacd19-3701-4bab-8649-ada6dd2638d7)
+
+
+## Cyber Attack Overview
+- **Threat Actor Motivations:** Financial gain, using the network's vulnerabilities to exfiltrate sensitive information and potentially extort the target.
+- **Attack Approach:** Utilizing a mixture of technical vulnerabilities and social engineering to gain initial access and escalate privileges within the network.
+
+## Key Activities
+
+### 1. Reconnaissance
+- **Objective:** Identify network vulnerabilities and entry points.
+- **Actions:**
+  - Conduct an Nmap scan to discover open ports and services on the network.
+    - -p1-1000: Scans top 1000 ports
+    - -sV: Service scan discovery
+    - -Pn: Bypasses ping blocking
+   This scan revealed a host with:
+   - Open SSH
+   - Open SMTP (Port 25)
+   - Target System: `project-x-email-svr` identified as a potential entry point due to its internet accessibility.
+ 
+     ![image](https://github.com/user-attachments/assets/883b19ea-fb5a-4854-a5a0-804b46bfe0b6)
+
+ 
+
+
+  
+
+### 2. Initial Access
+- **Objective:** Gain a foothold in the network.
+- **Actions:**
+  - Utilize SSH vulnerabilities on identified systems.
+
+
+![image](https://github.com/user-attachments/assets/8986c236-d8e5-427c-9139-eb7eca0ddfba)
+![image](https://github.com/user-attachments/assets/f2d1ac01-5fae-49cc-b663-d7becabb858d)
+![image](https://github.com/user-attachments/assets/f28e454c-ddb5-4a91-9523-98e180d891e8)
+![image](https://github.com/user-attachments/assets/b3d6637e-b1ae-4aad-8f15-6dbd019d71bd)
+
+- Deploy Hydra to perform brute-force attacks using common passwords and usernames sourced from lists like `rockyou.txt`.
+- Successful SSH entry into `project-x-email-svr` using credentials obtained from brute force.
+ 
+![image](https://github.com/user-attachments/assets/7bcd26ac-699c-461e-87f8-bcdf47f4b33c)
+![image](https://github.com/user-attachments/assets/2c2b15f2-5cec-4efe-91e4-401f7c292dec)
+![image](https://github.com/user-attachments/assets/3077543d-3b75-4591-8bc9-74d1c121372d)
+
+
+
+
+  - Check the OS version and distribution using the command: `cat /etc/os-release`.
+  - Determine the hostname with: `hostname`.
+  - Discover the IP address of the device using: `ip a`.
+  - Inspect active network services to identify potential attack vectors using `netstat -tuln`.
+ 
+  ![image](https://github.com/user-attachments/assets/91d3880d-3206-4a87-9b6b-8a9aed1315a6)
+
+  - Review the email-svr/Maildir directory for outgoing emails that could provide additional context or credentials, specifically checking messages sent to `janed@corp.project-x-dc.com`.
+
+![image](https://github.com/user-attachments/assets/66f13842-09aa-4f1d-a3cb-3ab6d51d644c)
+
+    
+  - 
+
+
+
+### 3. Setup the Lure (Phishing Attack)
+- **Objective:** Execute a phishing attack to obtain higher-level credentials.
+- **Actions:**
+  - Craft a spear-phishing email impersonating an internal security alert.
+  - Host a fake password verification page on a compromised server to capture credentials.
+  - Distribute the phishing email to users, specifically targeting a user on `project-x-linux-client`.
+
+### 4. Lateral Movement and Privilege Escalation
+- **Objective:** Expand control within the network and escalate privileges.
+- **Actions:**
+  - With obtained credentials, access additional systems within the network.
+  - Employ tools like Evil-WinRM for Windows systems to exploit WinRM services for higher-level access.
+
+### 5. Data Exfiltration
+- **Objective:** Steal sensitive information.
+- **Actions:**
+  - Identify and locate sensitive files on `project-x-dc`.
+  - Utilize SCP to transfer files to the attacker-controlled external server.
+
+### 6. Establishing Persistence
+- **Objective:** Maintain long-term access to the network.
+- **Actions:**
+  - Create backdoor accounts and schedule tasks running reverse shells to ensure ongoing access.
+
+## Tools and Techniques
+- **Reconnaissance:** Nmap, network service scanning.
+- **Initial Access:** Hydra for brute-force attacks.
+- **Phishing Setup:** Custom phishing tools, HTML email crafting.
+- **Privilege Escalation:** Evil-WinRM, custom scripts for automation.
+- **Data Exfiltration:** SCP for secure file transfer.
+- **Persistence:** Scheduled tasks, reverse shell scripts.
+
+## Conclusion
+This simulated attack demonstrates the multi-step approach an attacker might take to breach a network, from initial reconnaissance to establishing persistence. The scenario highlights the necessity for robust defense mechanisms and continuous monitoring to detect and mitigate such threats.
 
 
 
