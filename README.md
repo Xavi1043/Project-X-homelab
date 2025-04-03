@@ -719,6 +719,7 @@ For the purpose of this simulation, we assume that the attacker already has the 
   - **Action:** On the attacker's server, a listener is set up to accept the incoming connection from the reverse shell.
   - **Tools Used:** Common tools for this purpose include `nc` (Netcat) or other specialized listening software configured to handle incoming PowerShell connections securely and efficiently.
 
+![image](https://github.com/user-attachments/assets/05290ab9-ea6c-43f6-b3cb-9e4d5fa18e32)
 
     
 
