@@ -524,6 +524,10 @@ Simulate a cyber-attack on ProjectX's business network to capture sensitive file
     - -p1-1000: Scans top 1000 ports
     - -sV: Service scan discovery
     - -Pn: Bypasses ping blocking
+
+![image](https://github.com/user-attachments/assets/ceee85c4-eaac-41b0-a554-e1df2f39db10)
+
+
    This scan revealed a host with:
    - Open SSH
    - Open SMTP (Port 25)
@@ -566,16 +570,75 @@ Simulate a cyber-attack on ProjectX's business network to capture sensitive file
 ![image](https://github.com/user-attachments/assets/66f13842-09aa-4f1d-a3cb-3ab6d51d644c)
 
     
-  - 
 
 
 
 ### 3. Setup the Lure (Phishing Attack)
 - **Objective:** Execute a phishing attack to obtain higher-level credentials.
 - **Actions:**
-  - Craft a spear-phishing email impersonating an internal security alert.
+- Craft a spear-phishing email impersonating an internal security alert.
+
+ ![image](https://github.com/user-attachments/assets/e5a36dd8-35b0-439f-b15c-b1409326e39e)
+
+  
   - Host a fake password verification page on a compromised server to capture credentials.
-  - Distribute the phishing email to users, specifically targeting a user on `project-x-linux-client`.
+  - 
+![image](https://github.com/user-attachments/assets/8ea5f1ad-9237-4cba-83ea-220fbbcee2d0)
+![image](https://github.com/user-attachments/assets/b35a50ff-d661-4fdf-821f-fe5a99408734)
+
+
+    
+- Distribute the phishing email to users, specifically targeting a user Jane on `project-x-linux-client`.
+
+![image](https://github.com/user-attachments/assets/04b79e84-1866-4fdc-b3e8-b2c5e70b89b8)
+
+***Important Note***
+
+- If client uses an outlook client Gmail this would be rendered in HTML and the verify my account section would be a hyperlink . It would not be an IP address , but a domain.
+
+![image](https://github.com/user-attachments/assets/3fa381dc-083d-40bc-94f4-2e8d7f771662)
+![image](https://github.com/user-attachments/assets/184c7d2d-f2ee-4c4c-b431-64039cfbf0f7)
+![image](https://github.com/user-attachments/assets/0ca30d03-1f5a-47d1-85b4-70fdf99e7e0b)
+![image](https://github.com/user-attachments/assets/791ecd3a-bc44-4748-a4e6-335773edf4a7)
+![image](https://github.com/user-attachments/assets/314faebf-c8f4-4bba-aaa8-4de48e2a2ec2)
+
+
+Collecting more info on our new victim
+
+![image](https://github.com/user-attachments/assets/eea682c7-bbbe-48d1-b3ee-4e6b009c30f5)
+
+## Server Role Identification
+
+![image](https://github.com/user-attachments/assets/4c1ed0a1-cb2b-4b9e-ad55-a1d8a7bf9b40)
+
+
+### Context
+After conducting an `nmap` scan of the server at `10.0.0.5` following a phishing attack simulation, key services indicative of a Domain Controller within an Active Directory environment were identified.
+
+### Details of Identified Services
+
+- **DNS (Port 53/tcp)**:
+  - **Service:** Domain Name System (DNS)
+  - **Purpose:** Essential for network name resolution, indicating a central role in network addressing within an Active Directory environment.
+
+- **Kerberos (Port 88/tcp)**:
+  - **Service:** Kerberos
+  - **Purpose:** Manages secure network authentication, typical of Active Directory environments for authenticating user and service logins.
+
+- **LDAP (Port 389/tcp)**:
+  - **Service:** Lightweight Directory Access Protocol (LDAP)
+  - **Purpose:** Handles access and maintenance of distributed directory information, essential for managing user data and authentication across the network.
+
+- **Microsoft DS (Port 445/tcp)**:
+  - **Service:** Microsoft Directory Services (SMB)
+  - **Purpose:** Supports file and printer sharing, along with domain services, reinforcing its function as a critical component of the network infrastructure.
+ 
+  - Winrm service detected running
+ 
+    ![image](https://github.com/user-attachments/assets/518a6491-85d0-4e86-b93e-33a9566981d5)
+
+ 
+
 
 ### 4. Lateral Movement and Privilege Escalation
 - **Objective:** Expand control within the network and escalate privileges.
