@@ -155,9 +155,60 @@ In Phase 2, the goal is to provision and configure a Windows 11 Enterprise virtu
 ## Outcome
 The Windows 11 workstation is now fully integrated into the `corp.project-x-dc.com` domain, demonstrating successful network configuration, domain joining, and user authentication via Active Directory.
 
-## Next Steps
-Proceed with additional configurations for user roles, security policies, and deploy applications as required for further domain functionality and user-specific settings.
 
+# Phase 3 - Provision & Integrate Ubuntu Desktop 22.04 with Active Directory
+
+## Objective
+This phase focuses on provisioning an Ubuntu Desktop 22.04 VM and configuring it to integrate seamlessly with the Active Directory environment at `corp.project-x-dc.com`. The process involves setting up networking, ensuring correct DNS resolution, and joining the Ubuntu client to the domain using Samba Winbind.
+
+## Key Tasks Completed
+
+### 1. Configured Static IP and DNS
+- Set up a new wired connection named "Linux AD1" with static IP configuration.
+  - **IP Address**: 10.0.0.9
+  - **Subnet Mask**: 255.255.255.0
+  - **Default Gateway**: 10.0.0.1
+  - **DNS**: 10.0.0.5
+- Verified network settings via the GUI.
+
+![image](https://github.com/user-attachments/assets/7a6bc38d-6869-4acc-a066-2c556e2dd3da)
+
+![image](https://github.com/user-attachments/assets/886bac13-714b-42f2-a2e3-a7e55d93ca71)
+
+
+
+### 2. Verified DNS Resolution and Domain Configuration
+- Adjusted and verified DNS settings using `systemd-resolved` and directly editing `resolv.conf`.
+- Used `realm discover` to check the availability and requirements for joining the `corp.project-x-dc.com` domain.
+
+![image](https://github.com/user-attachments/assets/8aca5d5b-fe78-4a23-aa5c-4fe03f719b87)
+
+
+### 3. Joined the Ubuntu Client to the Domain
+- Executed the domain join process using the `net ads join` command.
+- Configured necessary services like `smbd`, `nmbd`, and `winbind` and restarted them to apply all changes.
+- Verified successful domain join and the functioning of domain services.
+
+![image](https://github.com/user-attachments/assets/645cb4c2-b745-46b8-8df5-008d692e1666)
+
+
+### 4. Validated User and Group Enumeration
+- Checked domain user and group listings using `wbinfo -u` and other `winbind` utilities.
+- Successfully listed users, demonstrating integration with Active Directory.
+
+![image](https://github.com/user-attachments/assets/48cc6162-e320-4f44-8e11-5f4fa2d5f7e8)
+
+
+### 5. Confirmed Active Directory User Login
+- Logged in with the domain user `janed` and verified her UID, GID, and group memberships via the `id` command, confirming correct access rights and group mappings.
+
+![image](https://github.com/user-attachments/assets/fb5057d6-3a4a-4358-9b80-7fa574919361)
+
+## Outcome
+The Ubuntu Desktop 22.04 VM is fully integrated into the `corp.project-x-dc.com` domain, with correct network settings, DNS configuration,
+
+
+![image](https://github.com/user-attachments/assets/3b8e5550-7b15-4dfe-ae79-20baaa15b620)
 
 
 
