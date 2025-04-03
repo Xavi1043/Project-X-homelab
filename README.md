@@ -402,7 +402,7 @@ The Wazuh agent on the Linux client, Windows Client , and AD server are successf
 # Phase 8 – Configure a Vulnerable Environment
 
 ## Objective
-Intentionally weaken systems within the lab to simulate real-world attack surfaces. This setup enables detection rule creation, alerting, and monitoring using Wazuh on project-x-sec-box. These
+Intentionally weaken systems within the lab to simulate real-world attack surfaces. This setup enables detection rule creation, alerting, and monitoring using Wazuh on project-x-sec-box. 
 
 ---
 
@@ -427,13 +427,6 @@ Intentionally weaken systems within the lab to simulate real-world attack surfac
 - Ensured Wazuh agent on project-x-email-svr was actively sending logs to project-x-sec-box.
 - Monitored SSH login attempts via `/var/log/auth.log`, creating detection rules for both successful and failed attempts.
 
-![image](https://github.com/user-attachments/assets/f9503ff5-f494-41d5-af3a-98a178aff1a8)
-![image](https://github.com/user-attachments/assets/7056f403-ea0a-4ef3-813b-a8bf17062db7)
-![image](https://github.com/user-attachments/assets/226df24d-cc6f-4c78-aba4-fde549c81cdc)
-![image](https://github.com/user-attachments/assets/bf132087-5f57-4e7e-9da3-53fc9655d8e4)
-![image](https://github.com/user-attachments/assets/e9e9ccf6-fe94-49c1-bdec-7a2cd7e0c00e)
-
-
 
 ### 3. Open SSH on project-x-linux-client
 - Enabled and configured the SSH server, opening port 22 through the firewall.
@@ -446,6 +439,12 @@ Intentionally weaken systems within the lab to simulate real-world attack surfac
 ### 5. Create Custom SSH Detection Alert
 - Implemented a Wazuh rule to generate alerts after three consecutive failed SSH login attempts within a 60-second window.
 - Tested rule effectiveness by simulating failed logins.
+
+![image](https://github.com/user-attachments/assets/f9503ff5-f494-41d5-af3a-98a178aff1a8)
+![image](https://github.com/user-attachments/assets/7056f403-ea0a-4ef3-813b-a8bf17062db7)
+![image](https://github.com/user-attachments/assets/226df24d-cc6f-4c78-aba4-fde549c81cdc)
+![image](https://github.com/user-attachments/assets/bf132087-5f57-4e7e-9da3-53fc9655d8e4)
+![image](https://github.com/user-attachments/assets/e9e9ccf6-fe94-49c1-bdec-7a2cd7e0c00e)
 
 ### 6. Configure Email Communication from project-x-email-svr to project-x-linux-client
 - Configured s-nail for sending test messages and verified successful message delivery in Maildir on the Linux client.
