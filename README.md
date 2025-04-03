@@ -351,6 +351,56 @@ The objective of Phase 6 is to deploy and configure Security Onion on a dedicate
 The Security Server is fully set up with Security Onion, integrated into the Active Directory environment, and ready for deployment. It stands prepared to enhance the organization’s security posture by providing advanced threat detection and response capabilities.
 
 
+# Phase 7 - Wazuh Agent Installation and Configuration
+
+## Objective
+The goal of Phase 7 is to install and configure the Wazuh agent on the Linux client, Window Client , and AD server. This setup aims to enhance security monitoring and automate incident response across the IT infrastructure.
+
+## Wazuh Overview
+Wazuh is a powerful open-source security monitoring solution, combining advanced SIEM (Security Information and Event Management) capabilities with XDR (Extended Detection and Response) features. Key components include:
+- **Wazuh Agent**: Installed on monitored systems to collect and forward data.
+- **Wazuh Manager**: Processes data received from agents and executes analytic rules.
+- **Wazuh Dashboard**: Provides a visual interface for real-time data analysis and reporting.
+
+## Key Tasks Completed
+
+### 1. DNS Configuration and Verification
+- Resolved DNS issues by temporarily using Google's DNS to facilitate the download of necessary packages.
+
+### 2. Wazuh Agent Download and Installation
+- Downloaded the Wazuh agent package from the official repository using `wget` and installed it on the Linux client using `dpkg`.
+- Configured the agent to communicate with the Wazuh manager using environment variables.
+
+![image](https://github.com/user-attachments/assets/491726e7-6b1d-47d4-99c8-aa8f49e1d393)
+
+![image](https://github.com/user-attachments/assets/b00936e2-ca35-472b-9757-2f82de68e435)
+
+
+### 3. Agent Configuration
+- Configured the agent to monitor critical system logs including auth, secure, and audit logs, enhancing security event detection and response capabilities.
+
+![image](https://github.com/user-attachments/assets/3964ffe4-0c86-453f-8ec9-f7280eaa49ed)
+
+![image](https://github.com/user-attachments/assets/1af2eda0-61ee-49ba-b695-20b64091caa4)
+
+
+
+### 4. Service Management
+- Enabled the Wazuh agent service via `systemd`, confirmed its operational status, and ensured it is set to start on system boot.
+
+
+### 5. Verification and Testing
+- Verified the functionality and effective communication of the Wazuh agent with the Wazuh manager, ensuring it performed as configured.
+
+
+## Outcome
+The Wazuh agent on the Linux client, Windows Client , and AD server are successfully installed and configured, fully integrated with the centralized Wazuh manager, and ready for proactive security monitoring and incident response.
+
+![image](https://github.com/user-attachments/assets/944dfc00-ea72-423c-8578-bef9a5039aee)
+
+
+## Next Steps
+Monitor the agent's performance and integration, and adjust configurations as necessary to address emerging security threats or changes in the network environment.
 
 
 
