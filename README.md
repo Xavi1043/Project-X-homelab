@@ -479,6 +479,26 @@ Intentionally weaken systems within the lab to simulate real-world attack surfac
 ![image](https://github.com/user-attachments/assets/7dcda1c6-fe0c-40f5-815d-30f6c2e07ef6)
 
 
+# Phase 9 – Setup The Attacker Machine
+
+## Objective
+Set up Kali Linux on a virtual machine to serve as an attack platform for conducting security tests and simulations within the lab.
+
+---
+
+## Key Tasks Completed
+
+### Configure Kali Linux
+- **Installation:** Installed Kali Linux using the VirtualBox platform. The installation process included selecting the "Graphical install" option, setting the hostname to "attacker", and configuring user credentials exclusively for this environment.
+- **Network Configuration:** Configured and verified network settings to ensure proper communication within the lab environment.
+- **Security Tools Setup:** Installed and configured necessary tools such as Metasploit and Burp Suite for penetration testing and vulnerability assessment.
+- **Security Implications Addressed:** Ensured that the use of Kali Linux is isolated within the lab environment to prevent any unauthorized access and potential misuse.
+
+## Notes
+- Kali Linux is a specialized tool used by cybersecurity professionals to test and enhance security. 
+
+
+
 
 
 
