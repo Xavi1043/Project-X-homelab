@@ -256,8 +256,55 @@ In Phase 4, we focus on deploying and configuring an Ubuntu Server 22.04 (projec
 ## Outcome
 The Ubuntu Server 22.04 is fully integrated into the `corp.project-x-dc.com` domain, with functional network settings, domain authentication, and user management. This setup ensures that the server can operate within the domain, providing email services and participating in domain security protocols.
 
-## Next Steps
-Continue monitoring the integration for any potential issues with domain services, and begin deploying additional services on the server as required for operational needs.
+
+# Phase 5 - Postfix Mail Server Setup
+
+## Objective
+Phase 5 focuses on setting up and configuring Postfix, a popular Mail Transfer Agent (MTA), to handle email services within the `corp.project-x-dc.com` domain. This setup involves configuring Postfix to operate as an Internet Site, managing email routing, and ensuring integration with the domain's DNS services for optimal mail delivery.
+
+## Key Tasks Completed
+
+### 1. Postfix Installation and Configuration
+- Installed Postfix with detailed configuration options.
+- Configured Postfix to function as an Internet Site, specifying `email-svr` as the mail name.
+- Setup system mail name and recipient configurations.
+
+
+### 2. Mailbox and Alias Configuration
+- Configured the mailbox directory to `/home/email-svr/Maildir`.
+- Setup `virtual_alias_maps` to route emails for `email-svr@corp.project-x-dc.com` to the local `email-svr` user account.
+- Restarted Postfix to apply new configurations.
+
+
+### 3. Email Client Setup Using s-nail
+- Installed and configured `s-nail` as the email client, setting the mail directory to `/home/email-svr/Maildir`.
+- Adjusted s-nail settings to enhance usability and mail management.
+
+
+### 4. Static IP and DNS Configuration
+- Configured a static IP and specified DNS settings to ensure proper domain name resolution and network connectivity.
+
+### 5. Testing and Email Interaction
+- Created and navigated the Maildir structure, confirming the correct setup of mail directories (`cur`, `new`, `tmp`).
+- Sent test emails using `s-nail`, verified the receipt and functionality of the email system.
+
+
+![image](https://github.com/user-attachments/assets/0b3422ea-c0d4-4a0f-9e3b-07496416e16f)
+
+![image](https://github.com/user-attachments/assets/01afc872-2e49-4337-9699-32d3f9a4533b)
+
+
+
+### 6. DNS Configuration in Active Directory
+- Added a DNS host record for `smtp.corp.project-x-dc.com` pointing to `10.0.0.8` in the domain controller's DNS Manager to facilitate mail service discovery within the network.
+
+![image](https://github.com/user-attachments/assets/309f0ae2-cea2-496c-a6b7-48dcecb863a0)
+
+
+## Outcome
+The Postfix mail server is fully operational and integrated into the `corp.project-x-dc.com` domain. It is configured to handle email routing, sending, and receiving for the domain, supporting internal communications within the simulated enterprise network.
+
+
 
 
 
