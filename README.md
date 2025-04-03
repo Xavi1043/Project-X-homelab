@@ -493,8 +493,11 @@ Set up Kali Linux on a virtual machine to serve as an attack platform for conduc
 - **Network Configuration:** Configured and verified network settings to ensure proper communication within the lab environment.
 - **Security Tools Setup:** Installed and configured necessary tools such as Metasploit and Burp Suite for penetration testing and vulnerability assessment.
 - **Security Implications Addressed:** Ensured that the use of Kali Linux is isolated within the lab environment to prevent any unauthorized access and potential misuse.
+
 ![image](https://github.com/user-attachments/assets/893876c8-7b31-4789-807a-0488e38f7f99)
+
 ![image](https://github.com/user-attachments/assets/7a8fb12d-5e6c-4fc4-a460-e56fb4886732)
+
 ![image](https://github.com/user-attachments/assets/384be04e-523c-414c-95be-4537d28ac3fc)
 
 
