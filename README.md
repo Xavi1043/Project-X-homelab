@@ -1,6 +1,11 @@
 # Project-X-homelab
 Home lab made for Offense &amp; Defense capabilities
 
+### Disclaimer: Vulnerability Representation in Simulation
+
+Please note that the vulnerabilities and attack vectors depicted in this simulation are intentionally simplified and may represent scenarios that are highly unlikely in real-world applications. 
+
+
 ## Objective
 The Project-X homelab project aims to create a simulated enterprise network environment to facilitate the study and demonstration of network security, system administration, and penetration testing. This project utilizes a variety of operating systems and technologies to mimic real-world business IT infrastructure, providing a controlled environment for security testing, educational purposes, and system configuration practice.
 
