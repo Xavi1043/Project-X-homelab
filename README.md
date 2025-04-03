@@ -641,21 +641,78 @@ After conducting an `nmap` scan of the server at `10.0.0.5` following a phishing
 
 
 ### 4. Lateral Movement and Privilege Escalation
+### Assumptions
+For the purpose of this simulation, we assume that the attacker already has the password for the Active Directory (AD) server. This simplifies the demonstration of lateral movement and escalation techniques without detailing the initial compromise of these credentials.
+
 - **Objective:** Expand control within the network and escalate privileges.
 - **Actions:**
   - With obtained credentials, access additional systems within the network.
   - Employ tools like Evil-WinRM for Windows systems to exploit WinRM services for higher-level access.
+
+![image](https://github.com/user-attachments/assets/fb7a37be-25b8-4bfc-bb9c-df2521319034)
+![image](https://github.com/user-attachments/assets/14943f88-b0be-47a8-9c2b-a5567449fbae)
+
+
+    
 
 ### 5. Data Exfiltration
 - **Objective:** Steal sensitive information.
 - **Actions:**
   - Identify and locate sensitive files on `project-x-dc`.
   - Utilize SCP to transfer files to the attacker-controlled external server.
+ 
+![image](https://github.com/user-attachments/assets/78c935f4-5dfc-4f11-a7a4-8bc1b56434fa)
+![image](https://github.com/user-attachments/assets/f9dffad4-6a50-4754-a60a-94cd6e4c8a74)
+![image](https://github.com/user-attachments/assets/2a14564d-a472-42bb-9f29-061782649fe1)
+
+
 
 ### 6. Establishing Persistence
 - **Objective:** Maintain long-term access to the network.
 - **Actions:**
   - Create backdoor accounts and schedule tasks running reverse shells to ensure ongoing access.
+
+![image](https://github.com/user-attachments/assets/bb4e2526-d85d-497e-a4f2-08fae18f7d37)
+![image](https://github.com/user-attachments/assets/a78b364d-a4a4-4f56-89bb-309fd9423479)
+
+### Reverse Shell Steps and Techniques
+
+- **Step 1: Reverse Shell Script Creation**
+  - **Action:** A GPT created PowerShell script named `reverse.ps1` is initiated for a reverse TCP connection.
+  - **Details:** The script uses system networking capabilities to connect back to the attacker's controlled server, allowing command execution from the attacker's server.
+ 
+![image](https://github.com/user-attachments/assets/b9c78028-41e2-4fff-a7d3-cd5299eb093b)
+
+    
+
+- **Step 2: Web Server Utilization**
+  - **Action:** A simple HTTP server is started on the attacker's machine using Python, serving the directory where `reverse.ps1` resides.
+  - **Purpose:** This allows the script to be downloaded onto the target machine via a web request, simulating an attacker's method to deploy tools remotely.
+ 
+    <img width="601" alt="image" src="https://github.com/user-attachments/assets/1010ac37-3442-4cfa-ad65-07fd6d6b6e46" />
+    ![image](https://github.com/user-attachments/assets/723e82c1-ce00-414b-a32a-fae54371e54f)
+
+
+
+
+
+- **Step 3: Script Download and Execution**
+  - **Action:** On the target machine, the script is downloaded using a browser or command-line tool like `curl` or `wget`.
+  - **Details:** Once downloaded, the script is executed, establishing a persistent reverse shell that connects to the pre-configured port and IP address on the attacker's machine.
+
+- **Step 4: Scheduled Task for Automation**
+  - **Action:** To ensure the reverse shell persists through reboots and does not require manual intervention, a scheduled task is created.
+  - **Details:** This task is configured to run the PowerShell script at regular intervals (e.g., every day at noon), or upon specific events that guarantee the shell's activation without arousing suspicion.
+
+![image](https://github.com/user-attachments/assets/7e90ab3c-a0e0-4dd9-bf02-6a5718d0a407)
+
+
+- **Step 5: Listening for Incoming Connections**
+  - **Action:** On the attacker's server, a listener is set up to accept the incoming connection from the reverse shell.
+  - **Tools Used:** Common tools for this purpose include `nc` (Netcat) or other specialized listening software configured to handle incoming PowerShell connections securely and efficiently.
+
+
+    
 
 ## Tools and Techniques
 - **Reconnaissance:** Nmap, network service scanning.
@@ -665,8 +722,58 @@ After conducting an `nmap` scan of the server at `10.0.0.5` following a phishing
 - **Data Exfiltration:** SCP for secure file transfer.
 - **Persistence:** Scheduled tasks, reverse shell scripts.
 
+
+### Monitoring and Response: Wazuh Alerts Efficacy
+
+During the cyber attack simulation, Wazuh's intrusion detection system played a crucial role in real-time alert generation, which helped in monitoring the sequence of unauthorized activities. Here are some of the key alerts that were triggered, indicating the system's responsiveness to the intrusion:
+
+![image](https://github.com/user-attachments/assets/74c660f3-25d7-449d-99f8-fb1cdcccfcb5)
+
+
+- **SSH Authentication Failures**: Multiple failed SSH attempts were detected, triggering alerts for suspicious activities that suggest a brute force attack vector. This was critical in the early detection of the attack.
+
+![image](https://github.com/user-attachments/assets/d025b6ec-2296-4449-a8a3-4743166f327d)
+![image](https://github.com/user-attachments/assets/c0534ccc-e413-4a89-b723-a13fbe06c5a3)
+
+
+- **File Access and Modification**: Alerts were generated when sensitive files, such as `secrets.txt.txt`, were accessed and modified. These alerts are pivotal for tracking unauthorized access to critical files and data exfiltration attempts.
+
+  ![image](https://github.com/user-attachments/assets/ada7117c-a716-479a-a000-a972a6e9d7b3)
+  ![image](https://github.com/user-attachments/assets/cca05863-9cce-4848-bea9-8cc976dd0cdc)
+  ![image](https://github.com/user-attachments/assets/15bab3c7-aa62-4fdc-93cd-993b57bece04)
+
+
+
+
+- **WinRM Logon Activity**: Unusual logon activities detected via Windows Remote Management (WinRM) were also alerted, pointing towards remote execution attempts, which are often a part of lateral movement in cyber attacks.
+
+  ![image](https://github.com/user-attachments/assets/8dba56eb-042d-4395-bc2d-c33fe53d93bc)
+  ![image](https://github.com/user-attachments/assets/1e21a320-20f2-4fd1-8b1a-bb079724cc3e)
+  ![image](https://github.com/user-attachments/assets/0e1d0cc3-d478-43b2-b350-df1c457e4461)
+
+
+
+These alerts are instrumental for a security operations center (SOC) in quickly identifying and responding to malicious activities, thus mitigating the risk and limiting the damage caused by attackers. The triggered alerts also validate the effectiveness of monitoring strategies and tools deployed within the network to safeguard against sophisticated cyber threats.
+
+This documentation not only serves to outline the direct attack paths but also underscores the layered security approach and the necessity of having robust detection mechanisms like Wazuh in place to alert on suspicious activities in real-time.
+
+
+  
+
 ## Conclusion
 This simulated attack demonstrates the multi-step approach an attacker might take to breach a network, from initial reconnaissance to establishing persistence. The scenario highlights the necessity for robust defense mechanisms and continuous monitoring to detect and mitigate such threats.
+
+
+
+### Credit and Resources
+
+This cyber attack simulation and the subsequent analysis were made possible through the comprehensive resources provided by Grant Collins. His contributions to the cybersecurity community have been instrumental in the development and success of this simulation. Here's how you can access more of his work and resources:
+
+- **YouTube Channel**: For a wide range of tutorials and insightful content, visit Grant Collins' [YouTube channel](https://www.youtube.com/@collinsinfosec).
+
+- **Project-X Website**: For detailed documentation and tutorials that are integral to this simulation, explore the [Project-X website](https://project-x.com).
+
+- **Discord Community**: For real-time assistance and engaging discussions with a community of cybersecurity enthusiasts, join the [Discord server](https://discord.gg/CqCfkrsu) managed by Grant Collins.
 
 
 
