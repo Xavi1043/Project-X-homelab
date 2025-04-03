@@ -585,13 +585,13 @@ Simulate a cyber-attack on ProjectX's business network to capture sensitive file
 
   
   - Host a fake password verification page on a compromised server to capture credentials.
-  - 
+    
 ![image](https://github.com/user-attachments/assets/8ea5f1ad-9237-4cba-83ea-220fbbcee2d0)
 ![image](https://github.com/user-attachments/assets/b35a50ff-d661-4fdf-821f-fe5a99408734)
 
 
     
-- Distribute the phishing email to users, specifically targeting a user Jane on `project-x-linux-client`.
+- Distribute the phishing email to users, specifically targeting the user Jane, on `project-x-linux-client`.
 
 ![image](https://github.com/user-attachments/assets/04b79e84-1866-4fdc-b3e8-b2c5e70b89b8)
 
