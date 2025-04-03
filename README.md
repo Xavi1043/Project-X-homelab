@@ -494,8 +494,7 @@ Set up Kali Linux on a virtual machine to serve as an attack platform for conduc
 - **Security Tools Setup:** Installed and configured necessary tools such as Metasploit and Burp Suite for penetration testing and vulnerability assessment.
 - **Security Implications Addressed:** Ensured that the use of Kali Linux is isolated within the lab environment to prevent any unauthorized access and potential misuse.
 
-## Notes
-- Kali Linux is a specialized tool used by cybersecurity professionals to test and enhance security. 
+![image](https://github.com/user-attachments/assets/384be04e-523c-414c-95be-4537d28ac3fc)
 
 
 
