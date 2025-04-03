@@ -48,3 +48,70 @@ The Project-X homelab project aims to create a simulated enterprise network envi
 ### Guides and Documentation
 A series of step-by-step guides are provided for setting up each component of the homelab environment. These include provisioning virtual machines, setting up servers and clients, and configuring tools like Postfix and Wazuh.
 
+
+# Phase 1 - Active Directory Domain Services (AD DS) Deployment
+
+## Objective
+Phase 1 focuses on deploying Active Directory Domain Services (AD DS) to establish a foundational enterprise network structure that supports advanced management of user data, security, and distributed resources.
+
+## Key Tasks Completed
+
+### 1. Set Up Virtual Networking
+- Created a VirtualBox NAT Network called `project-x-network`.
+- Configured subnet: `10.0.0.0/24`.
+- Set up DHCP server range: `10.0.0.10 – 10.0.0.254`.
+- Confirmed gateway at `10.0.0.1`.
+
+
+### 2. Provisioned Windows Server VM
+- Installed Windows Server 2022/2025 in VirtualBox.
+- Assigned a static IP: `10.0.0.5`.
+- Configured:
+  - Subnet mask: `255.255.255.0`.
+  - Gateway: `10.0.0.1`.
+  - DNS: Initially `127.0.0.1`, later changed to `10.0.0.5`.
+
+
+### 3. Installed and Configured Active Directory
+- Installed the Active Directory Domain Services role.
+- Promoted the server to a Domain Controller.
+- Created a new forest: `corp.project-x-dc.com`.
+- Server hostname set during installation (can be customized if renamed).
+
+![image](https://github.com/user-attachments/assets/c816a8a9-a690-4a53-b060-f1031e9562dd)
+
+![image](https://github.com/user-attachments/assets/e202b173-0a19-4ed2-8fd6-ab323c3ecd4a)
+
+
+
+### 4. Installed and Configured DNS
+- Installed DNS Server role.
+- Configured the internal DNS server to handle queries for `corp.project-x-dc.com`.
+- Added forwarders (e.g., `8.8.8.8`) to allow internet name resolution.
+- Verified resolution via `nslookup` and connectivity via `ping`.
+
+
+![image](https://github.com/user-attachments/assets/f72efbdb-a5ea-490d-add4-e408dddad540)
+
+
+### 5. Enabled DHCP for Internal Address Distribution
+- Installed the DHCP role.
+- Configured scope (optional until later phase).
+- Reserved the static IP of the DC outside of the DHCP pool.
+
+
+## Outcome
+- The Domain Controller is live and reachable at `10.0.0.5`.
+- Internet and internal name resolution function correctly via DNS forwarders.
+- The domain `corp.project-x-dc.com` is now ready for client machines to join.
+- User account for John Doe added and configured.
+
+
+![image](https://github.com/user-attachments/assets/4bca5b1d-db85-4c31-8796-15317ce77333)
+
+  
+
+## Next Steps
+Phase 2 will involve setting up client machines and testing connectivity to the Domain Controller, alongside further security enhancements and operational tests.
+
+
