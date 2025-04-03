@@ -110,8 +110,55 @@ Phase 1 focuses on deploying Active Directory Domain Services (AD DS) to establi
 ![image](https://github.com/user-attachments/assets/4bca5b1d-db85-4c31-8796-15317ce77333)
 
   
+# Phase 2 - Provision & Join Windows 11 Workstation to Domain
+
+## Objective
+In Phase 2, the goal is to provision and configure a Windows 11 Enterprise virtual machine, integrate it into the `corp.project-x-dc.com` domain, and demonstrate successful domain-based operations and access controls.
+
+## Key Tasks Completed
+
+### 1. Provisioned Windows 11 Enterprise VM
+- Deployed Windows 11 Enterprise using VirtualBox.
+- Disabled internet temporarily using a Host-only Adapter to bypass Microsoft Account setup during the initial configuration.
+- Completed the local user setup with a generic offline account for initial access.
+
+### 2. Configured Networking
+- Switched VM’s network adapter back to NAT Network: `project-x-network`.
+- Assigned a static IP configuration:
+  - **IP Address**: 10.0.0.x (e.g., 10.0.0.10)
+  - **Subnet Mask**: 255.255.255.0
+  - **Default Gateway**: 10.0.0.1
+  - **Preferred DNS Server**: 10.0.0.5 (AD DNS)
+- Conducted connectivity tests:
+  - **Ping** to gateway and DC.
+  - **DNS resolution** using `nslookup corp.project-x-dc.com`.
+
+
+![image](https://github.com/user-attachments/assets/1575b546-6d45-4708-bb79-ff43f66ea5c5)
+
+
+### 3. Joined Workstation to Domain
+- Ensured time synchronization with the domain (crucial for Kerberos authentication).
+- Successfully joined the Windows 11 workstation to the `corp.project-x-dc.com` domain.
+- Restarted the workstation to apply domain membership settings.
+
+### 4. Logged In with Domain User
+- Utilized the "Active Directory Users and Computers" on the Domain Controller to create a domain user: `johnd`.
+- Logged into the Windows 11 workstation using the domain credentials for `johnd`.
+- Verified user profile creation and successful integration into the domain environment.
+
+- **User Profile Login**: Demonstrating logging in with domain credentials.
+
+![image](https://github.com/user-attachments/assets/3ce88c8c-e820-40f4-bc26-7f18ac094434)
+
+
+## Outcome
+The Windows 11 workstation is now fully integrated into the `corp.project-x-dc.com` domain, demonstrating successful network configuration, domain joining, and user authentication via Active Directory.
 
 ## Next Steps
-Phase 2 will involve setting up client machines and testing connectivity to the Domain Controller, alongside further security enhancements and operational tests.
+Proceed with additional configurations for user roles, security policies, and deploy applications as required for further domain functionality and user-specific settings.
+
+
+
 
 
