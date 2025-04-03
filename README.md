@@ -81,7 +81,7 @@ Phase 1 focuses on deploying Active Directory Domain Services (AD DS) to establi
 - Installed the Active Directory Domain Services role.
 - Promoted the server to a Domain Controller.
 - Created a new forest: `corp.project-x-dc.com`.
-- Server hostname set during installation (can be customized if renamed).
+- Server hostname set during installation 
 
 ![image](https://github.com/user-attachments/assets/c816a8a9-a690-4a53-b060-f1031e9562dd)
 
