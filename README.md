@@ -543,9 +543,6 @@ Simulate a cyber-attack on ProjectX's business network to capture sensitive file
 
 
 ![image](https://github.com/user-attachments/assets/8986c236-d8e5-427c-9139-eb7eca0ddfba)
-![image](https://github.com/user-attachments/assets/f2d1ac01-5fae-49cc-b663-d7becabb858d)
-![image](https://github.com/user-attachments/assets/f28e454c-ddb5-4a91-9523-98e180d891e8)
-![image](https://github.com/user-attachments/assets/b3d6637e-b1ae-4aad-8f15-6dbd019d71bd)
 
 - Deploy Hydra to perform brute-force attacks using common passwords and usernames sourced from lists like `rockyou.txt`.
 - Successful SSH entry into `project-x-email-svr` using credentials obtained from brute force.
