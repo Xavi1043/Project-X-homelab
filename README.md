@@ -211,5 +211,54 @@ The Ubuntu Desktop 22.04 VM is fully integrated into the `corp.project-x-dc.com`
 ![image](https://github.com/user-attachments/assets/3b8e5550-7b15-4dfe-ae79-20baaa15b620)
 
 
+# Phase 4 - Ubuntu Server Setup & Active Directory Integration
+
+## Objective
+In Phase 4, we focus on deploying and configuring an Ubuntu Server 22.04 (project-x-email-svr) to integrate seamlessly with the Active Directory environment `corp.project-x-dc.com`. The server is set up to handle email services, although it's also a part of the broader network integration testing with AD.
+
+## Key Tasks Completed
+
+### 1. Provision and Initial Setup
+- Deployed Ubuntu Server 22.04 on a VirtualBox VM.
+- Configured basic settings including hostname (`project-x-email-svr`), network, and OpenSSH Server installation.
+
+### 2. Network Configuration and Time Synchronization
+- Configured static IP `10.0.0.8`, gateway `10.0.0.1`, and DNS settings pointing to the AD Domain Controller `10.0.0.5`.
+
+### 3. AD Integration Preparation
+- Installed necessary packages for AD integration including Kerberos, Samba, and Winbind.
+- Configured Kerberos and Samba for AD integration.
+
+![image](https://github.com/user-attachments/assets/1f291a34-fe19-4c99-806f-06afa508d67d)
+
+
+### 4. Domain Joining
+- Joined the Ubuntu server to the `corp.project-x-dc.com` domain using Winbind.
+- Validated the server's domain membership and ensured the Winbind service is running properly.
+
+![image](https://github.com/user-attachments/assets/cd4701e0-fa28-4a4e-8853-0dfd42d3ce62)
+
+
+### 5. User and Group Configuration
+- Added the `email-svr` user to Active Directory and verified it can log in to the Ubuntu server.
+- Checked user and group listings to ensure proper domain integration.
+
+- **AD Users and Computers showing email-svr:** Demonstrates the user creation in Active Directory.
+
+![image](https://github.com/user-attachments/assets/0d42d31f-f898-43b8-be75-1372faa5f22f)
+
+
+- **Domain Computers showing EMAIL-SVR:** Confirms the Ubuntu server is recognized as a computer within the domain.
+
+![image](https://github.com/user-attachments/assets/ba12b9ce-eee4-4115-aba5-b9f38539d75b)
+
+
+## Outcome
+The Ubuntu Server 22.04 is fully integrated into the `corp.project-x-dc.com` domain, with functional network settings, domain authentication, and user management. This setup ensures that the server can operate within the domain, providing email services and participating in domain security protocols.
+
+## Next Steps
+Continue monitoring the integration for any potential issues with domain services, and begin deploying additional services on the server as required for operational needs.
+
+
 
 
