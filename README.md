@@ -306,6 +306,52 @@ The Postfix mail server is fully operational and integrated into the `corp.proje
 
 
 
+# Phase 6 - Security Server Provision & Setup
+
+## Objective
+The objective of Phase 6 is to deploy and configure Security Onion on a dedicated security server within the network to enhance monitoring, log management, and intrusion detection capabilities. This phase involves setting up the server, integrating it with Active Directory, and preparing it for future security tasks.
+
+## Key Tasks Completed
+
+### 1. Virtual Machine Cloning and Setup
+- Cloned an existing Virtual Machine to create the Security Server, named `project-x-sec-box`.
+- Configured the machine with Security Onion to provide network security monitoring and intrusion detection.
+
+### 2. Security Onion Installation
+- Installed Security Onion on the newly created VM following the guidelines specified in the Security Onion setup documentation.
+- Configured essential services and tested the initial setup to ensure operational readiness.
+
+
+
+### 3. Configuring the Security Server
+- Configured static IP and network settings to integrate with the corporate network.
+- Added the server to the `corp.project-x-dc.com` domain to manage authentication and user access through Active Directory.
+
+### 4. User Account Creation and Configuration
+- Created a new user account `sec-user` for daily operations, ensuring it has appropriate permissions for security tasks.
+- Integrated the user with Active Directory, assigning necessary roles and privileges for network security management.
+
+![image](https://github.com/user-attachments/assets/3f975903-24b2-4fdf-a010-c28cd2c6e5df)
+
+![image](https://github.com/user-attachments/assets/a15faa9a-55ed-4c85-aecf-cc80db14036d)
+
+
+
+### 5. Active Directory Integration
+- Successfully joined the Security Server to the Active Directory domain using administrative credentials.
+- Configured DNS settings to ensure the server can resolve network names within the domain accurately.
+
+![image](https://github.com/user-attachments/assets/220523b5-7d1a-40a0-a474-55134dc0b336)
+
+
+### 6. Post-Setup Configuration
+- The server is currently set up but not used in active deployments; it's prepared for future security tasks and further configuration as needed.
+
+## Outcome
+The Security Server is fully set up with Security Onion, integrated into the Active Directory environment, and ready for deployment. It stands prepared to enhance the organization’s security posture by providing advanced threat detection and response capabilities.
+
+
+
 
 
 
