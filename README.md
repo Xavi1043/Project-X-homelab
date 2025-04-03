@@ -399,8 +399,86 @@ The Wazuh agent on the Linux client, Windows Client , and AD server are successf
 ![image](https://github.com/user-attachments/assets/944dfc00-ea72-423c-8578-bef9a5039aee)
 
 
-## Next Steps
-Monitor the agent's performance and integration, and adjust configurations as necessary to address emerging security threats or changes in the network environment.
+# Phase 8 – Configure a Vulnerable Environment
+
+## Objective
+Intentionally weaken systems within the lab to simulate real-world attack surfaces. This setup enables detection rule creation, alerting, and monitoring using Wazuh on project-x-sec-box. These
+
+---
+
+## Key Tasks Completed
+
+### 1. Open SSH on project-x-email-svr
+- Installed and enabled the OpenSSH server.
+- Verified SSH service was active and accessible externally.
+- Modified `/etc/ssh/sshd_config` to allow password authentication, enabling root login and password-based authentication.
+- Restarted SSH service after configuration changes.
+
+![image](https://github.com/user-attachments/assets/0c712144-5c08-457a-94f1-4dad04c2cd47)
+![image](https://github.com/user-attachments/assets/6a277269-6ad7-49bd-881e-092b160a4dc7)
+![image](https://github.com/user-attachments/assets/32ece3ba-0bd0-42d0-a44e-81d282d6a1b5)
+![image](https://github.com/user-attachments/assets/2e0ceed8-7613-40d2-a3e9-0ee46b94f38b)
+
+
+
+
+
+### 2. Wazuh Detection Integration – Email Server
+- Ensured Wazuh agent on project-x-email-svr was actively sending logs to project-x-sec-box.
+- Monitored SSH login attempts via `/var/log/auth.log`, creating detection rules for both successful and failed attempts.
+
+![image](https://github.com/user-attachments/assets/f9503ff5-f494-41d5-af3a-98a178aff1a8)
+![image](https://github.com/user-attachments/assets/7056f403-ea0a-4ef3-813b-a8bf17062db7)
+![image](https://github.com/user-attachments/assets/226df24d-cc6f-4c78-aba4-fde549c81cdc)
+![image](https://github.com/user-attachments/assets/bf132087-5f57-4e7e-9da3-53fc9655d8e4)
+![image](https://github.com/user-attachments/assets/e9e9ccf6-fe94-49c1-bdec-7a2cd7e0c00e)
+
+
+
+### 3. Open SSH on project-x-linux-client
+- Enabled and configured the SSH server, opening port 22 through the firewall.
+- Verified remote SSH access functionality.
+
+### 4. Wazuh Detection Integration – Linux Client
+- Configured log forwarding for SSH events to project-x-sec-box.
+- Established a Wazuh rule to detect multiple failed login attempts as a brute-force attack simulation.
+
+### 5. Create Custom SSH Detection Alert
+- Implemented a Wazuh rule to generate alerts after three consecutive failed SSH login attempts within a 60-second window.
+- Tested rule effectiveness by simulating failed logins.
+
+### 6. Configure Email Communication from project-x-email-svr to project-x-linux-client
+- Configured s-nail for sending test messages and verified successful message delivery in Maildir on the Linux client.
+- Monitored and confirmed SMTP traffic through internal networking.
+
+![image](https://github.com/user-attachments/assets/3834cffe-b89f-4dc5-b412-a5c40e4253d5)
+
+
+### 7. Wazuh Detection Integration – Email Traffic
+- Captured and monitored mail activity logs for outbound email activities, enhancing the detection of unauthorized email transmissions.
+
+### 8. Enable WinRM on project-x-win-client
+- Set up Windows Remote Management and configured necessary firewall settings to facilitate secure remote management.
+
+### 9. Wazuh Detection Integration – WinRM
+- Implemented detection for WinRM session initiation and validated alert functionality through simulated remote sessions.
+
+![image](https://github.com/user-attachments/assets/b2badfef-0f77-4d9a-8068-6a14a260c9f9)
+![image](https://github.com/user-attachments/assets/825ab776-dbb5-43a4-bec6-8cd536881906)
+![image](https://github.com/user-attachments/assets/722610de-7cf4-4d6d-b96b-2d4e4b431ac1)
+![image](https://github.com/user-attachments/assets/1c344f7a-dcf5-4e67-bdc2-d28eca3d3915)
+![image](https://github.com/user-attachments/assets/cc18e45a-5586-403b-b322-ad7593c6dc9c)
+
+
+
+
+
+### 10. Enable RDP on project-x-dc (Domain Controller)
+- Activated Remote Desktop Protocol and configured firewall to allow RDP connections.
+- Verified connectivity using Remote Desktop Connection (mstsc) from a remote host.
+
+![image](https://github.com/user-attachments/assets/7dcda1c6-fe0c-40f5-815d-30f6c2e07ef6)
+
 
 
 
