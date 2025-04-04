@@ -698,7 +698,8 @@ For the purpose of this simulation, we assume that the attacker already has the 
   - **Purpose:** This allows the script to be downloaded onto the target machine via a web request, simulating an attacker's method to deploy tools remotely.
  
     <img width="601" alt="image" src="https://github.com/user-attachments/assets/1010ac37-3442-4cfa-ad65-07fd6d6b6e46" />
-    ![image](https://github.com/user-attachments/assets/723e82c1-ce00-414b-a32a-fae54371e54f)
+
+     ![image](https://github.com/user-attachments/assets/723e82c1-ce00-414b-a32a-fae54371e54f)
 
 
 
